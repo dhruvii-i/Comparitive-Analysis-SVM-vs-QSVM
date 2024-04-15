@@ -4,3 +4,4 @@ numPy: 1.21.2
 scikit-learn: 0.24.2
 matplotlib: 3.4.3
 tldextract: 3.1.2
+nltk: 3.6.3
