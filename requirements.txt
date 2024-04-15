@@ -6,4 +6,4 @@ matplotlib
 tldextract
 nltk
 gdown
-bytesIO
+BytesIO
