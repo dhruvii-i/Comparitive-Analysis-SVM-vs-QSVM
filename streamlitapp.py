@@ -11,7 +11,7 @@ def download_file_from_google_drive(url):
     response = requests.get(url)
     return BytesIO(response.content)
 
-tfidi_url = "https://drive.google.com/uc?id=YOUR_ID_HERE"
+tfidi_url = "https://drive.google.com/file/d/1ijX8Sn3OwFqx89fJsWcnNxWIN-lejz-Z/view?usp=sharing"
 tfidi_file = download_file_from_google_drive(tfidi_url)
 tfidi = joblib.load(tfidi_file)
 
