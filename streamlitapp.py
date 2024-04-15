@@ -30,38 +30,18 @@ def main():
 <style>
     /* Change the font size for all text within the Streamlit app */
     body {
-        font-size: 40px;
+        font-size: 20px;
     }
 </style>
 """, unsafe_allow_html=True)
-    def set_bg_hack_url():
-        '''
-        A function to unpack an image from url and set as bg.
-        Returns
-        -------
-        The background.
-        '''
-            
-        st.markdown(
-             f"""
-             <style>
-             .stApp {{
-                 background: url("https://c.ndtvimg.com/2020-07/1k0ddgo_flipkart650_625x300_28_July_20.jpg?ver-20230922.06");
-                 background-size: cover
-             }}
-             </style>
-             """,
-             unsafe_allow_html=True
-         )
-    set_bg_hack_url()
-    st.title("Sentiment Analysis on Flipkart Reviews :shopping_trolley: ")
-    input_text = st.text_input("Enter a Review on You Experience :thinking_face: :thinking_face:")
+
+    st.title("Sentiment Analysis on Flipkart Reviews 🛒 ")
+    input_text = st.text_input("Enter a Review on Your Experience 🤔 🤔")
     
-    dig =""
-    if st.button("Analyse my sentiment 	:hugging_face:"):
-        dig = analysis([input_text])
+    dig = ""
+    if st.button("Analyse my sentiment 	🤗"):
+        dig = analysis(input_text, tfidi, svm_model)
     st.success(dig)
-        
 
 if __name__ == '__main__':
     main()
