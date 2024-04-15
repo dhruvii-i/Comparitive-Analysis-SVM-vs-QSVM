@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 
 # Load the model
-with open('YourModel.pkl', 'rb') as f:
+with open('svm_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # Define your Streamlit app here
