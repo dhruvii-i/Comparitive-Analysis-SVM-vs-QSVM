@@ -1,5 +1,6 @@
 import streamlit as st
 import pickle
+pip install scikit-learn
 import sklearn
 
 # Load the SVM model from the pickle file
