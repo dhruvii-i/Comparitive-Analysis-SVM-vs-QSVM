@@ -5,33 +5,25 @@ import joblib
 import gdown
 from io import BytesIO
 
-model = joblib.load('svm_model.pkl')
+# Load the TF-IDF model
+tfidi_model_url = "https://drive.google.com/uc?id=1ijX8Sn3OwFqx89fJsWcnNxWIN-lejz-Z"  # Direct download link to the TF-IDF model file
+tfidi_model_file = gdown.download(tfidi_model_url, quiet=False)
+tfidi = joblib.load(tfidi_model_file)
 
-def load_tfidi_from_google_drive(url):
-    # Download the file from Google Drive
-    file_content = gdown.download(url, quiet=False)
-    # Convert the string content to bytes
-    file_bytes = bytes(file_content, encoding='utf-8')
-    # Create a bytes-like object from the binary content
-    tfidi_file = BytesIO(file_bytes)
-    return tfidi_file
+# Load the SVM model
+svm_model = joblib.load('svm_model.pkl')
 
-
-tfidi_url = "https://drive.google.com/file/d/1ijX8Sn3OwFqx89fJsWcnNxWIN-lejz-Z/view?usp=sharing"  # Replace with your Google Drive file ID
-tfidi = load_tfidi_from_google_drive(tfidi_url)
-
-def analysis(input_text):
-    input_data_features = tfidi.transform(input_text)
+def analysis(input_text, tfidi_model, svm_model):
+    input_data_features = tfidi_model.transform([input_text])
     data_features = pd.DataFrame(input_data_features.toarray())
  
-    prediction = model.predict(data_features)
-    print(prediction)
-    if (prediction[0] == 0):
-        return "Positive Sentiment :heart_eyes: :champagne: :tada:"
-    elif (prediction[0] == 1):
-        return "Negative Sentiment :sneezing_face: :angry: :rage:"
+    prediction = svm_model.predict(data_features)
+    if prediction[0] == 0:
+        return "Positive Sentiment 😍 🥂 🎉"
+    elif prediction[0] == 1:
+        return "Negative Sentiment 😤 😡 😠"
     else:
-        return "Neutral Sentiment :no_mouth: :slightly_smiling_face:"
+        return "Neutral Sentiment 😶 🙂"
 
 def main():
     st.markdown("""
