@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 import joblib
 import sklearn
-model = joblib.load('flipkart_sentiment_model.pkl')
+model = joblib.load('svm_model.pkl')
 
 tfidi = joblib.load('tfidf_vectorizer_flipkart_data.pkl')
 
