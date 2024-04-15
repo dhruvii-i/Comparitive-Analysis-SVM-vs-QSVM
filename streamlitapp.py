@@ -2,10 +2,18 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import joblib
-import sklearn
+import requests
+from io import BytesIO
+
 model = joblib.load('svm_model.pkl')
 
-tfidi = joblib.load('tfidf_vectorizer_flipkart_data.pkl')
+def download_file_from_google_drive(url):
+    response = requests.get(url)
+    return BytesIO(response.content)
+
+tfidi_url = "https://drive.google.com/uc?id=YOUR_ID_HERE"
+tfidi_file = download_file_from_google_drive(tfidi_url)
+tfidi = joblib.load(tfidi_file)
 
 def analysis(input_text):
     input_data_features = tfidi.transform(input_text)
