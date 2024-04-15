@@ -11,7 +11,7 @@ def load_tfidi_from_google_drive(url):
     tfidi_file = BytesIO(gdown.download(url, quiet=False))
     return joblib.load(tfidi_file)
 
-tfidi_url = ""  # Replace with your Google Drive file ID
+tfidi_url = "https://drive.google.com/file/d/1ijX8Sn3OwFqx89fJsWcnNxWIN-lejz-Z/view?usp=sharing"  # Replace with your Google Drive file ID
 tfidi = load_tfidi_from_google_drive(tfidi_url)
 
 def analysis(input_text):
