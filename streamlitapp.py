@@ -10,8 +10,10 @@ model = joblib.load('svm_model.pkl')
 def load_tfidi_from_google_drive(url):
     # Download the file from Google Drive
     file_content = gdown.download(url, quiet=False)
-    # Create a bytes-like object from the downloaded content
-    tfidi_file = BytesIO(file_content)
+    # Convert the string content to bytes
+    file_bytes = bytes(file_content, encoding='utf-8')
+    # Create a bytes-like object from the binary content
+    tfidi_file = BytesIO(file_bytes)
     return tfidi_file
 
 
@@ -71,7 +73,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
