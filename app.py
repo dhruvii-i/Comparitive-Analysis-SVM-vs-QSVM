@@ -30,6 +30,8 @@ def preprocess_text(text):
 def predict_sentiment(text):
     # Preprocess text
     preprocessed_text = preprocess_text(text)
+    # Debugging statement
+    print("Preprocessed Text:", preprocessed_text)
     # Use the SVM model to predict sentiment
     predicted_label = svm_model.predict([preprocessed_text])[0]
     return predicted_label
