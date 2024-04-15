@@ -3,7 +3,7 @@ import pickle
 
 # Load the model
 with open('svm_model.pkl', 'rb') as f:
-    model = pickle.load(f)
+    svm_model = pickle.load(f)
 
 # Define your Streamlit app here
 def main():
