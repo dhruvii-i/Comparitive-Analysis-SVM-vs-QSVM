@@ -8,8 +8,12 @@ from io import BytesIO
 model = joblib.load('svm_model.pkl')
 
 def load_tfidi_from_google_drive(url):
-    tfidi_file = BytesIO(gdown.download(url, quiet=False))
-    return joblib.load(tfidi_file)
+    # Download the file from Google Drive
+    file_content = gdown.download(url, quiet=False)
+    # Create a bytes-like object from the downloaded content
+    tfidi_file = BytesIO(file_content)
+    return tfidi_file
+
 
 tfidi_url = "https://drive.google.com/file/d/1ijX8Sn3OwFqx89fJsWcnNxWIN-lejz-Z/view?usp=sharing"  # Replace with your Google Drive file ID
 tfidi = load_tfidi_from_google_drive(tfidi_url)
@@ -67,3 +71,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+
