@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 
 # Load the SVM model from the pickle file
-with open('svm_model.pkl', 'rb') as f:
+with open('Comparitive-Analysis-SVM-vs-QSVM/svm_model.pkl', 'rb') as f:
     svm_model = pickle.load(f)
 
 # Function to predict sentiment
