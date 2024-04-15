@@ -39,8 +39,8 @@ def main():
 </style>
 """, unsafe_allow_html=True)
 
-    st.title("Sentiment Analysis on Flipkart Reviews 🛒 ")
-    input_text = st.text_input("Enter a Review on Your Experience 🤔 🤔")
+    st.title("Sentiment Analysis using SVM model")
+    input_text = st.text_input("Enter the text for sentiment analysis 📝")
     
     dig = ""
     if st.button("Analyse my sentiment 	🤗"):
