@@ -2,18 +2,17 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import joblib
-import requests
+import gdown
 from io import BytesIO
 
 model = joblib.load('svm_model.pkl')
 
-def download_file_from_google_drive(url):
-    response = requests.get(url)
-    return BytesIO(response.content)
+def load_tfidi_from_google_drive(url):
+    tfidi_file = BytesIO(gdown.download(url, quiet=False))
+    return joblib.load(tfidi_file)
 
-tfidi_url = "https://drive.google.com/file/d/1ijX8Sn3OwFqx89fJsWcnNxWIN-lejz-Z/view?usp=sharing"
-tfidi_file = download_file_from_google_drive(tfidi_url)
-tfidi = joblib.load(tfidi_file)
+tfidi_url = ""  # Replace with your Google Drive file ID
+tfidi = load_tfidi_from_google_drive(tfidi_url)
 
 def analysis(input_text):
     input_data_features = tfidi.transform(input_text)
@@ -24,7 +23,7 @@ def analysis(input_text):
     if (prediction[0] == 0):
         return "Positive Sentiment :heart_eyes: :champagne: :tada:"
     elif (prediction[0] == 1):
-        return "Negetive Sentiment :sneezing_face: :angry: :rage:"
+        return "Negative Sentiment :sneezing_face: :angry: :rage:"
     else:
         return "Neutral Sentiment :no_mouth: :slightly_smiling_face:"
 
@@ -65,7 +64,6 @@ def main():
         dig = analysis([input_text])
     st.success(dig)
         
-
 
 if __name__ == '__main__':
     main()
