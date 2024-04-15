@@ -4,6 +4,10 @@ import streamlit as st
 import joblib
 import gdown
 from io import BytesIO
+import nltk
+
+# Download NLTK resources
+nltk.download('punkt')
 
 # Load the TF-IDF model
 tfidi_model_url = "https://drive.google.com/uc?id=1ijX8Sn3OwFqx89fJsWcnNxWIN-lejz-Z"  # Direct download link to the TF-IDF model file
