@@ -5,6 +5,7 @@ import joblib
 import gdown
 from io import BytesIO
 import nltk
+import pickle 
 
 # Download NLTK resources
 nltk.download('punkt')
