@@ -2,23 +2,18 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import joblib
-import gdown
-from io import BytesIO
-import nltk
 import pickle 
 
 # Download NLTK resources
+import nltk
 nltk.download('punkt')
 
 # Load the TF-IDF model
-tfidi = joblib.load('tfidf_vectorizer1.pkl')
+with open('tfidf_vectorizer1.pkl', 'rb') as f:
+    tfidf_vectorizer = pickle.load(f)
 
 # Load the SVM model
 svm_model = joblib.load('svm2_model.pkl')
-
-# Load the TF-IDF vectorizer used for training
-with open('tfidf_vectorizer1.pkl', 'rb') as f:
-    tfidf_vectorizer = pickle.load(f)
 
 def analysis(input_text, tfidf_vectorizer, svm_model):
     # Preprocess the input data using the same TF-IDF vectorizer
