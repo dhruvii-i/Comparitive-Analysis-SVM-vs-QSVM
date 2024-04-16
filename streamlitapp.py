@@ -12,7 +12,7 @@ import pickle
 nltk.download('punkt')
 
 # Load the TF-IDF model
-tfidi = joblib.load('tfidf_vectorizer.pkl')
+tfidi = joblib.load('tfidf_vectorizer1.pkl')
 
 # Load the SVM model
 svm_model = joblib.load('svm2_model.pkl')
