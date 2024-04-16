@@ -17,10 +17,15 @@ tfidi = joblib.load(tfidi_model_file)
 # Load the SVM model
 svm_model = joblib.load('svm2_model.pkl')
 
-def analysis(input_text, tfidi_model, svm_model):
-    input_data_features = tfidi_model.transform([input_text])
+# Load the TF-IDF vectorizer used for training
+with open('tfidf_vectorizer.pkl', 'rb') as f:
+    tfidf_vectorizer = pickle.load(f)
+
+def analysis(input_text, tfidf_vectorizer, svm_model):
+    # Preprocess the input data using the same TF-IDF vectorizer
+    input_data_features = tfidf_vectorizer.transform([input_text])
     data_features = pd.DataFrame(input_data_features.toarray())
- 
+
     prediction = svm_model.predict(data_features)
     if prediction[0] == 0:
         return "Positive Sentiment 😍 🥂 🎉"
@@ -44,7 +49,7 @@ def main():
     
     dig = ""
     if st.button("Analyse my sentiment 	🤗"):
-        dig = analysis(input_text, tfidi, svm_model)
+        dig = analysis(input_text, tfidf_vectorizer, svm_model)
     st.success(dig)
 
 if __name__ == '__main__':
