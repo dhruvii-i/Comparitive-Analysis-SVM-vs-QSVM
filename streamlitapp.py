@@ -15,7 +15,7 @@ tfidi_model_file = gdown.download(tfidi_model_url, quiet=False)
 tfidi = joblib.load(tfidi_model_file)
 
 # Load the SVM model
-svm_model = joblib.load('svm_model.pkl')
+svm_model = joblib.load('svm1_model.pkl')
 
 def analysis(input_text, tfidi_model, svm_model):
     input_data_features = tfidi_model.transform([input_text])
